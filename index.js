@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+var cors = require('cors')
+
 const keys = require('./config/keys');
 
 require('./models/User');
@@ -13,6 +15,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useMongoClient: true });
 
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(
@@ -25,16 +28,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/userRoutes')(app);
 require('./routes/blogRoutes')(app);
 
-if (['production'].includes(process.env.NODE_ENV)) {
-  app.use(express.static('client/build'));
+// if (['production'].includes(process.env.NODE_ENV)) {
+//   app.use(express.static('client/build'));
 
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve('client', 'build', 'index.html'));
-  });
-}
+//   const path = require('path');
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve('client', 'build', 'index.html'));
+//   });
+// }
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
