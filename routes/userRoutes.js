@@ -20,4 +20,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nLevel } = req.body;
+    const user = await User.findById(id);
+    console.log('req.params: ', req.params);
+    console.log('req.body: ', req.body);
+    if (user && nLevel) {
+      user.nLevel = nLevel;
+      await user.save();
+      res.status(200).send({ nLevel });
+    } else {
+      res.status(404).send({ msg: 'Error making PUT request for model User' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ msg: 'Error making PUT request for model User' });
+  }
+});
+
 module.exports = router;
