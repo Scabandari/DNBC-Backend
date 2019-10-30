@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-var cors = require('cors')
+var cors = require('cors');
 
 const keys = require('./config/keys');
 
@@ -27,8 +27,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
-require('./routes/userRoutes')(app);
+app.use('/dnbc/auth', require('./routes/authRoutes'));
+app.use('/dnbc/user', require('./routes/userRoutes'));
 require('./routes/blogRoutes')(app);
 
 // if (['production'].includes(process.env.NODE_ENV)) {
