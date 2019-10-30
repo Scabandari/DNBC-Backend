@@ -31,6 +31,10 @@ app.use('/dnbc/auth', require('./routes/authRoutes'));
 app.use('/dnbc/user', require('./routes/userRoutes'));
 require('./routes/blogRoutes')(app);
 
+app.get('/', (req, res) => {
+  res.send('Working');
+});
+
 // if (['production'].includes(process.env.NODE_ENV)) {
 //   app.use(express.static('client/build'));
 
