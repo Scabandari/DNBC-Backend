@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const user = await User.find({});
+    const user = await User.find({}).select('-googleId');
     res.status(200).json(user);
   } catch (err) {
     res.status(200).send('Ok');
@@ -24,7 +24,7 @@ router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { nLevel } = req.body;
-    const user = await User.findById(id);
+    const user = await User.findById(id).select('-googleId');
     console.log('req.params: ', req.params);
     console.log('req.body: ', req.body);
     if (user && nLevel) {
