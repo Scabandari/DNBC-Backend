@@ -7,6 +7,7 @@ var cors = require('cors');
 
 const keys = require('./config/keys');
 
+require('./models/Email');
 require('./models/User');
 require('./models/Blog');
 require('./services/passport');
@@ -29,6 +30,7 @@ app.use(passport.session());
 
 app.use('/dnbc/auth', require('./routes/authRoutes'));
 app.use('/dnbc/user', require('./routes/userRoutes'));
+app.use('/resume', require('./routes/resumeRoutes'));
 require('./routes/blogRoutes')(app);
 
 app.get('/', (req, res) => {
