@@ -10,8 +10,9 @@ router.get(
 );
 
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
+  console.log(`req.body: ${req.body}`);
   res.redirect(
-    "http://dual-n-back-clone.s3-website.us-east-2.amazonaws.com/profile"
+    process.env.FRONTEND_REDIRECT || "http://localhost:3000/profile"
   );
 });
 
