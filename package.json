@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.188.0",
+    "aws-sdk": "^2.576.0",
     "body-parser": "^1.17.2",
     "cookie-session": "^2.0.0-beta.2",
     "cors": "^2.8.5",
@@ -21,6 +21,7 @@
     "express-validator": "^6.2.0",
     "jest": "^22.1.4",
     "migrate-mongoose": "^3.2.2",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.3.1",
     "mongoose": "^5.7.5",
     "nodemon": "^1.11.0",
@@ -29,6 +30,6 @@
     "path-parser": "^2.0.2",
     "puppeteer": "^1.0.0",
     "redis": "^2.8.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.3.3"
   }
 }

@@ -7,13 +7,14 @@ var cors = require('cors');
 
 const keys = require('./config/keys');
 
-require('./models/Email');
+require('./models/resume/UdemyCourse');
+require('./models/resume/Email');
 require('./models/User');
 require('./models/Blog');
 require('./services/passport');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useMongoClient: true });
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/upload', require('./routes/uploadRoutes'));
 app.use('/dnbc/auth', require('./routes/authRoutes'));
 app.use('/dnbc/user', require('./routes/userRoutes'));
 app.use('/resume', require('./routes/resumeRoutes'));
