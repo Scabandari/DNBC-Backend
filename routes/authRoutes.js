@@ -11,9 +11,10 @@ router.get(
 
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
   console.log(`req.body: ${req.body}`);
-  res.redirect(
-    process.env.FRONTEND_REDIRECT || "http://localhost:3000/profile"
-  );
+  const redirect =
+    process.env.FRONTEND_REDIRECT || "http://localhost:3000/profile";
+  console.log(`redirect: ${redirect}`);
+  res.redirect(redirect);
 });
 
 router.get("/logout", (req, res) => {
