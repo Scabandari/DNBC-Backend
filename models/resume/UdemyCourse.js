@@ -31,6 +31,7 @@ const udemyCourseSchema = new Schema({
     required: [true, "A course review is required"]
   },
   imgUrl: {
+    // S3 resource url
     type: String
   },
   rating: {
